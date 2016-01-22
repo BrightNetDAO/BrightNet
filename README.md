@@ -1,4 +1,4 @@
-<img src="http://nucleo.io/images/future.png" width="240"/>
+<img src="http://nucleo.io/images/future.png" width="500"/>
 
 
 What is BrightNet?
