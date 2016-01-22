@@ -12,4 +12,4 @@ purpose library.
 It is not intended to keep Bitsquare synced with BrightNet, but Bitsquare will use BrightNet once it is further developed, tested and mature.
 
 You can find an overview here:
-https://docs.google.com/document/d/1kdZf1ZaPuj8MmtueBhv0f8ztvnappfd8hDJwNO1_TWH4MM
+https://docs.google.com/document/d/1kdZf1ZaPuj8MmtueBhv0f8ztvnfd8hDJwNO1_TWH4MM
