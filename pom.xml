@@ -3,15 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.bitsquare</groupId>
+    <groupId>io.brightnet</groupId>
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.2.3</version>
-    <description>Bitsquare - The decentralized bitcoin exchange</description>
-    <url>https://bitsquare.io</url>
+    <version>0.1.0</version>
+    <description>BrightNet - A Tor based P2P network</description>
 
     <organization>
-        <name>bitsquare.io</name>
+        <name>brightnet.io</name>
     </organization>
 
     <licenses>
@@ -24,13 +23,13 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/bitsquare/bitsquare/issues</url>
+        <url>https://github.com/brightnet/brightnet/issues</url>
     </issueManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/bitsquare/bitsquare</connection>
-        <developerConnection>scm:git:https://github.com/bitsquare/bitsquare</developerConnection>
-        <url>scm:git:https://github.com/bitsquare/bitsquare</url>
+        <connection>scm:git:https://github.com/brightnet/brightnet</connection>
+        <developerConnection>scm:git:https://github.com/brightnet/brightnet</developerConnection>
+        <url>scm:git:https://github.com/brightnet/brightnet</url>
     </scm>
 
     <properties>
@@ -39,13 +38,10 @@
 
     <modules>
         <module>common</module>
-        <module>core</module>
         <module>jsocks</module>
         <module>jtorctl</module>
         <module>jtorproxy</module>
         <module>network</module>
-        <module>seednode</module>
-        <module>gui</module>
     </modules>
 
     <build>

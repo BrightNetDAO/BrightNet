@@ -1,0 +1,55 @@
+/*
+ * This file is part of BrightNet.
+ *
+ * BrightNet is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at
+ * your option) any later version.
+ *
+ * BrightNet is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with BrightNet. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package io.brightnet.crypto;
+
+import io.brightnet.common.crypto.*;
+import io.brightnet.p2p.Message;
+import io.brightnet.p2p.messaging.DecryptedMsgWithPubKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import java.security.KeyPair;
+
+public class EncryptionService {
+    private static final Logger log = LoggerFactory.getLogger(EncryptionService.class);
+
+    private final KeyRing keyRing;
+
+    @Inject
+    public EncryptionService(KeyRing keyRing) {
+        this.keyRing = keyRing;
+    }
+
+    public SealedAndSigned encryptAndSign(PubKeyRing pubKeyRing, Message message) throws CryptoException {
+        KeyPair signatureKeyPair = keyRing.getSignatureKeyPair();
+        return Encryption.encryptHybridWithSignature(message, signatureKeyPair, pubKeyRing.getEncryptionPubKey());
+    }
+
+    public DecryptedMsgWithPubKey decryptAndVerify(SealedAndSigned sealedAndSigned) throws CryptoException {
+        DecryptedPayloadWithPubKey decryptedPayloadWithPubKey = Encryption.decryptHybridWithSignature(sealedAndSigned,
+                keyRing.getEncryptionKeyPair().getPrivate());
+        if (decryptedPayloadWithPubKey.payload instanceof Message) {
+            return new DecryptedMsgWithPubKey((Message) decryptedPayloadWithPubKey.payload,
+                    decryptedPayloadWithPubKey.sigPublicKey);
+        } else {
+            throw new CryptoException("decryptedPayloadWithPubKey.payload is not instance of Message");
+        }
+    }
+}
+
